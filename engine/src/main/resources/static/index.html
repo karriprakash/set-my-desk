@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SetMyDesk</title>
+  <meta name="description" content="Share your idea by voice, WhatsApp, call or text. Earn fair shares. Free, open source.">
+  <link rel="stylesheet" href="styles.css">
+  <script type="importmap">
+    { "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+    } }
+  </script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="#idea">Set<span>My</span>Desk</a>
+  <nav>
+    <a href="#idea">Share an idea</a>
+    <a href="#projects">Projects</a>
+    <a href="#desk">Set my desk</a>
+    <a href="#rules">How shares work</a>
+  </nav>
+</header>
+
+<main>
+  <!-- ======================= IDEA ======================= -->
+  <section id="idea" class="view">
+    <h1>Your idea. Your shares.</h1>
+    <p class="lead">Free forever. No money in, no money out. Send your idea any way you like. The engine checks
+      if it already exists, improves it if it does, and records your fair share.</p>
+
+    <div class="channels">
+      <div class="channel"><b>WhatsApp</b><span>Send a text or voice note to our WhatsApp number</span></div>
+      <div class="channel"><b>Phone call</b><span>Call, speak after the beep, get an SMS with your shares</span></div>
+      <div class="channel"><b>Here</b><span>Type it or record a voice note below</span></div>
+    </div>
+
+    <form id="idea-form" class="card">
+      <div class="row">
+        <label>Your name <input name="name" maxlength="80" placeholder="e.g. Lakshmi" autocomplete="name"></label>
+        <label>Phone (optional, kept private) <input name="phone" maxlength="20" placeholder="+91…" autocomplete="tel" inputmode="tel"></label>
+      </div>
+      <label>Your idea
+        <textarea name="text" rows="6" maxlength="10000"
+                  placeholder="Who has the problem? What is the problem? How would your idea solve it?"></textarea>
+      </label>
+      <div class="actions">
+        <button type="button" id="record" class="secondary" aria-pressed="false">🎙 Record voice note</button>
+        <span id="rec-status" class="muted" aria-live="polite"></span>
+        <button type="submit" class="primary">Send my idea</button>
+      </div>
+    </form>
+    <div id="idea-result" class="result" hidden aria-live="polite"></div>
+  </section>
+
+  <!-- ======================= PROJECTS ======================= -->
+  <section id="projects" class="view" hidden>
+    <h1>Projects</h1>
+    <p class="lead">Every project started from someone's idea. Shares show who built it.</p>
+    <div id="project-list" class="grid"></div>
+    <div id="project-detail" class="card" hidden></div>
+  </section>
+
+  <!-- ======================= DESK ======================= -->
+  <section id="desk" class="view" hidden>
+    <h1>Set my desk</h1>
+    <p class="lead">Tell us your desk size and what's on it. The engine computes an exact, ergonomic layout,
+      which you can view in 3D or place on your real desk in AR.</p>
+    <div class="desk-wrap">
+      <form id="desk-form" class="card">
+        <div class="row">
+          <label>Width (cm) <input name="w" type="number" min="60" max="400" value="140" required></label>
+          <label>Depth (cm) <input name="d" type="number" min="40" max="200" value="70" required></label>
+        </div>
+        <label>I use the mouse with my
+          <select name="hand"><option value="RIGHT">right hand</option><option value="LEFT">left hand</option></select>
+        </label>
+        <fieldset id="catalog"><legend>What's on your desk</legend></fieldset>
+        <button class="primary" type="submit">Arrange my desk</button>
+      </form>
+      <div class="stage-col">
+        <div id="stage" class="stage" aria-label="3D desk preview"></div>
+        <div id="ar-slot"></div>
+        <div id="desk-report" class="card" hidden></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= RULES ======================= -->
+  <section id="rules" class="view" hidden>
+    <h1>How shares work</h1>
+    <div id="rules-body" class="card"></div>
+  </section>
+</main>
+
+<footer class="foot">Open source (MIT) · Built to help women build careers from here · <a href="https://github.com/karriprakash/set-my-desk">GitHub</a></footer>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>

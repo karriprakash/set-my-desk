@@ -1,0 +1,53 @@
+# Render Blueprint: https://render.com/docs/blueprint-spec
+# One click: https://render.com/deploy?repo=https://github.com/karriprakash/set-my-desk
+services:
+  - type: web
+    name: setmydesk
+    runtime: docker
+    plan: free
+    region: singapore
+    rootDir: engine
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /api/rules
+    domains:
+      - setmydesk.com
+      - www.setmydesk.com
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: postgres
+      - key: DB_HOST
+        fromDatabase: { name: setmydesk-db, property: host }
+      - key: DB_PORT
+        fromDatabase: { name: setmydesk-db, property: port }
+      - key: DB_NAME
+        fromDatabase: { name: setmydesk-db, property: database }
+      - key: DB_USER
+        fromDatabase: { name: setmydesk-db, property: user }
+      - key: DB_PASSWORD
+        fromDatabase: { name: setmydesk-db, property: password }
+      - key: SETMYDESK_WEBHOOK_TOKEN
+        generateValue: true
+      - key: SETMYDESK_CORS_ORIGINS
+        value: https://setmydesk.com,https://www.setmydesk.com
+      # Optional, set in the Render dashboard when ready:
+      - key: SETMYDESK_TRANSCRIPTION_URL
+        sync: false
+      - key: SETMYDESK_TRANSCRIPTION_API_KEY
+        sync: false
+      - key: TWILIO_ACCOUNT_SID
+        sync: false
+      - key: TWILIO_AUTH_TOKEN
+        sync: false
+      - key: TWILIO_WHATSAPP_FROM
+        sync: false
+      - key: TWILIO_SMS_FROM
+        sync: false
+
+databases:
+  - name: setmydesk-db
+    plan: free
+    region: singapore
+    databaseName: setmydesk
+    user: setmydesk
+    postgresMajorVersion: "16"

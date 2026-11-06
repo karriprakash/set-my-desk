@@ -1,0 +1,30 @@
+{
+  "expo": {
+    "name": "SetMyDesk",
+    "slug": "setmydesk",
+    "scheme": "setmydesk",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "ios": {
+      "bundleIdentifier": "com.setmydesk.app",
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSMicrophoneUsageDescription": "SetMyDesk records your voice note so you can share your idea by speaking.",
+        "NSCameraUsageDescription": "SetMyDesk uses the camera to place your desk layout on your real desk in AR."
+      }
+    },
+    "android": {
+      "package": "com.setmydesk.app",
+      "permissions": ["RECORD_AUDIO", "CAMERA"]
+    },
+    "web": { "bundler": "metro" },
+    "plugins": [
+      ["expo-audio", { "microphonePermission": "SetMyDesk records your voice note so you can share your idea by speaking." }],
+      ["@reactvision/react-viro", {
+        "android": { "xRMode": ["AR"] },
+        "ios": { "cameraUsagePermission": "SetMyDesk uses the camera to place your desk layout on your real desk in AR." }
+      }]
+    ]
+  }
+}
