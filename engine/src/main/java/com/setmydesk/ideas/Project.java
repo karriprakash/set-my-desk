@@ -4,7 +4,6 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 
 import java.time.Instant;
@@ -20,8 +19,7 @@ public class Project {
     private String title;
 
     /** Founding idea plus every accepted enhancement; this is what new ideas are compared against. */
-    @Lob
-    @Column(nullable = false)
+    @Column(nullable = false, length = 1_000_000)
     private String corpus;
 
     @ManyToOne(optional = false)

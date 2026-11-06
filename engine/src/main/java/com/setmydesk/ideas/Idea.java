@@ -6,7 +6,6 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 
 import java.time.Instant;
@@ -35,7 +34,7 @@ public class Idea {
     @Enumerated(EnumType.STRING)
     private IdeaKind kind;
 
-    @Lob
+    @Column(length = 20_000)
     private String text;
 
     private String audioPath;

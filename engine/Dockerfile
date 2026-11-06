@@ -11,4 +11,5 @@ RUN useradd --system --uid 10001 setmydesk && mkdir -p /app/data && chown setmyd
 COPY --from=build /src/target/setmydesk-engine-*.jar app.jar
 USER setmydesk
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+# Fits small instances (Render free = 512 MB): cap heap at 70% of container memory.
+ENTRYPOINT ["java", "-XX:MaxRAMPercentage=70", "-XX:+UseSerialGC", "-Xss512k", "-jar", "/app/app.jar"]
