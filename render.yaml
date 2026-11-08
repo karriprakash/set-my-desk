@@ -10,9 +10,9 @@ services:
     dockerfilePath: ./Dockerfile
     dockerContext: .
     healthCheckPath: /api/rules
+    # setmydesk.com and www are served by Vercel (landing page); the engine app lives on a subdomain.
     domains:
-      - setmydesk.com
-      - www.setmydesk.com
+      - app.setmydesk.com
     envVars:
       - key: SPRING_PROFILES_ACTIVE
         value: postgres
@@ -29,7 +29,7 @@ services:
       - key: SETMYDESK_WEBHOOK_TOKEN
         generateValue: true
       - key: SETMYDESK_CORS_ORIGINS
-        value: https://setmydesk.com,https://www.setmydesk.com
+        value: https://setmydesk.com,https://www.setmydesk.com,https://app.setmydesk.com
       # Optional, set in the Render dashboard when ready:
       - key: SETMYDESK_TRANSCRIPTION_URL
         sync: false

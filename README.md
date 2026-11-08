@@ -66,17 +66,12 @@ them together, and generates the webhook token. The website is served by the sam
 1. Click the button, sign in to Render with GitHub, give it access to this repo, and press **Deploy Blueprint**.
 2. Wait for the first build (about 5–8 minutes). The app is then live at `https://setmydesk.onrender.com`
    (Render shows the exact URL; if the name is taken it adds a suffix).
-3. **Custom domain.** `setmydesk.com` and `www.setmydesk.com` are already listed in the blueprint. At your domain
-   registrar, add the records Render shows under *Settings → Custom Domains*, typically:
-
-   | Type | Name | Value |
-   |------|------|-------|
-   | `A` | `@` | `216.24.57.1` |
-   | `CNAME` | `www` | `setmydesk.onrender.com` |
-
+3. **Custom domain.** `setmydesk.com` and `www` serve the landing page from Vercel; the engine app is
+   `app.setmydesk.com` (already in the blueprint). At your domain registrar add a `CNAME` record named `app`
+   pointing to `setmydesk.onrender.com` (use the exact value Render shows under *Settings → Custom Domains*).
    Render issues the HTTPS certificate automatically once DNS resolves.
 4. Optional: in *Environment*, fill in the speech-to-text and Twilio variables, then point Twilio's WhatsApp and
-   voice webhooks at `https://setmydesk.com/channels/...?token=<SETMYDESK_WEBHOOK_TOKEN>` (copy the token from the dashboard).
+   voice webhooks at `https://app.setmydesk.com/channels/...?token=<SETMYDESK_WEBHOOK_TOKEN>` (copy the token from the dashboard).
 
 Free-tier limits: the service sleeps after 15 minutes without traffic (the next visit takes about 30 s to wake),
 the free database expires after 30 days unless upgraded, and voice-note files live on temporary disk. Upgrade

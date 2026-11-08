@@ -1,5 +1,5 @@
 // Typed client for the SetMyDesk engine. Same API the website uses.
-export const API_URL = (process.env.EXPO_PUBLIC_API_URL ?? 'https://setmydesk.com').replace(/\/$/, '');
+export const API_URL = (process.env.EXPO_PUBLIC_API_URL ?? 'https://app.setmydesk.com').replace(/\/$/, '');
 
 export type IdeaStatus = 'ACCEPTED' | 'PENDING_TRANSCRIPTION' | 'DUPLICATE' | 'NEEDS_DETAIL';
 export interface Outcome { status: IdeaStatus; ideaId: number | null; projectId: number | null; reply: string; trace: string[] }
