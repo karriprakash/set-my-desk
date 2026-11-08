@@ -1,2 +1,15 @@
 # Google App Engine generated folder
 appengine-generated/
+
+# Java
+engine/target/
+engine/data/
+
+# Node / Expo
+node_modules/
+mobile/.expo/
+mobile/dist/
+mobile/ios/
+mobile/android/
+
+.DS_Store
